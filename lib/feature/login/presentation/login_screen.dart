@@ -9,8 +9,8 @@ class LoginScreen extends StatefulWidget {
 
   Widget build(BuildContext context, LoginController controller) {
     controller.view = this;
-    String userId ="";
-    String password = "";
+    // String userId ="";
+    // String password = "";
       
     return SafeArea(
       child: Scaffold(
@@ -61,7 +61,7 @@ class LoginScreen extends StatefulWidget {
                     //       // fontSize: 12,
                     //     ),
                     onChanged: ((value) {
-                      userId = value;
+                      controller.userId = value;
                     }),
                   ),
                   gapH8,
@@ -74,7 +74,7 @@ class LoginScreen extends StatefulWidget {
                     //       // fontSize: 12,
                     //     ),
                     onChanged: ((value) {
-                      password = value;
+                      controller.password = value;
                     }),
                   ),
                   gapH8,
@@ -92,7 +92,7 @@ class LoginScreen extends StatefulWidget {
                           padding: EdgeInsets.symmetric(horizontal: 24),
                           child: Text('Login'),
                         ),
-                        onPressed: () => controller.doLogin(userId, password),
+                        onPressed: () => controller.doLogin(),
                       ),
                     ],
                   ),
@@ -108,7 +108,7 @@ class LoginScreen extends StatefulWidget {
                   children: [
                     const Text("Don't have an account? "),
                     TextButton(
-                      onPressed: () => controller.doLogin(userId, password),
+                      onPressed: () => controller.doLogin(),
                       child: const Text("Sign Up"),
                     ),
                   ],

@@ -21,36 +21,43 @@ class LoginController extends State<LoginScreen> implements MvcController {
   @override
   Widget build(BuildContext context) => widget.build(context, this);
 
-  doLogin(String userId, String password) async {
-    log(userId);
-    if(userId.isEmpty || password.isEmpty){
+  String userId = "";
+  String password = "";
+  doLogin() async {
+    if (userId.isEmpty || password.isEmpty) {
       await showDialog<void>(
-      context: context,
-      barrierDismissible: true,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: const Text('Info'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: const <Widget>[
-                Text('User ID dan atau Password anda belum diisi.'),
-              ],
+        context: context,
+        barrierDismissible: true,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(24),
             ),
-          ),
-          actions: <Widget>[
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.blueGrey,
+            title: const Text('Info'),
+            content: SingleChildScrollView(
+              child: ListBody(
+                children: const <Widget>[
+                  Text('User ID dan atau Password anda belum diisi.'),
+                ],
               ),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: const Text("Ok"),
             ),
-          ],
-        );
-      },
-    );
+            actions: <Widget>[
+              ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.purple,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(16)),
+                  ),
+                ),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                child: const Text("Ok"),
+              ),
+            ],
+          );
+        },
+      );
     }
   }
 }
