@@ -9,7 +9,7 @@ enum AppRoute {
 }
 
 final router = GoRouter(
-  initialLocation: '/login',
+  initialLocation: '/',
   debugLogDiagnostics: true,
   routerNeglect: true,
   routes: [
