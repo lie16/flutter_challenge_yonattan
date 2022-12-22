@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_challenge_yonattan/shared/constant/app_sizes.dart';
 import 'package:flutter_challenge_yonattan/shared/widget/lie_textfield.dart';
 
+import '../controller/login_controller.dart';
+
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+  const LoginScreen({Key? key}) : super(key: key);
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, LoginController controller) {
+    controller.view = this;
+    String userId ="";
+    String password = "";
+      
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -59,7 +59,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   //       color: Colors.black,
                   //       // fontSize: 12,
                   //     ),
-                  onChanged: ((value) {}),
+                  onChanged: ((value) {
+                    userId = value;
+                  }),
                 ),
                 gapH8,
                 LieTextField(
@@ -70,7 +72,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   //       color: Colors.black,
                   //       // fontSize: 12,
                   //     ),
-                  onChanged: ((value) {}),
+                  onChanged: ((value) {
+                    password = value;
+                  }),
                 ),
                 gapH8,
                 Row(
@@ -87,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         padding: EdgeInsets.symmetric(horizontal: 24),
                         child: Text('Login'),
                       ),
-                      onPressed: () {},
+                      onPressed: () => controller.doLogin(userId, password),
                     ),
                   ],
                 ),
@@ -99,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               Text("Don't have an account? "),
               TextButton(
-                onPressed: () {},
+                onPressed: () => controller.doLogin(userId, password),
                 child: Text("Sign Up"),
               ),
             ],
@@ -108,4 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
+
+  @override
+  State<LoginScreen> createState() => LoginController();
 }
